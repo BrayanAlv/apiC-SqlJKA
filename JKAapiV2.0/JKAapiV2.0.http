@@ -1,0 +1,6 @@
+@JKAapiV2._0_HostAddress = http://localhost:5001
+
+GET {{JKAapiV2._0_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
