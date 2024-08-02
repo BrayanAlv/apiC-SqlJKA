@@ -140,3 +140,4 @@ C:\Users\BrayanAlv\source\repos\JKAapiV2.0\JKAapiV2.0\obj\Debug\net8.0\refint\JK
 C:\Users\BrayanAlv\source\repos\JKAapiV2.0\JKAapiV2.0\obj\Debug\net8.0\JKAapiV2.0.pdb
 C:\Users\BrayanAlv\source\repos\JKAapiV2.0\JKAapiV2.0\obj\Debug\net8.0\JKAapiV2.0.genruntimeconfig.cache
 C:\Users\BrayanAlv\source\repos\JKAapiV2.0\JKAapiV2.0\obj\Debug\net8.0\ref\JKAapiV2.0.dll
+C:\Users\BrayanAlv\source\repos\JKAapiV2.0\JKAapiV2.0\obj\Debug\net8.0\JKAapiV2.0.sourcelink.json

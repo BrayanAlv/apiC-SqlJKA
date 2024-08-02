@@ -16,6 +16,7 @@ public static class Mapper
             LastName = r["LastName"] != DBNull.Value ? r["LastName"].ToString() : string.Empty,
             MiddleName = r["MiddleName"] != DBNull.Value ? r["MiddleName"].ToString() : null,
             Company = r["Company"] != DBNull.Value ? r["Company"].ToString() : null,
+            Password = r["Password"] != DBNull.Value ? r["Password"].ToString() : null,
             Email = r["Email"] != DBNull.Value ? r["Email"].ToString() : string.Empty,
             Approval = r["Approval"] != DBNull.Value ? Convert.ToBoolean(r["Approval"]) : false,
             Status = r["Status"] != DBNull.Value ? Convert.ToBoolean(r["Status"]) : false
