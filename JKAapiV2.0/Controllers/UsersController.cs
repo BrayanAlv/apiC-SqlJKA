@@ -109,7 +109,6 @@ namespace JKAapiV2._0.Controllers
                     if (user.Sensors == null || user.Sensors.Count == 0)
                     {
                         user.Sensors = new List<Sensor> { new Sensor { SerialNumber = "No data found" } };
-                        //user.Sensors = new MessageResponse.Get(1, "No data found");
                     }
                 }
 
@@ -160,5 +159,33 @@ namespace JKAapiV2._0.Controllers
                 return StatusCode(500, new { Status = 1, Message = $"Internal server error: {ex.Message}" });
             }
         }
+
+        [HttpGet("GetAllUsersAndUsersSU")]
+        public ActionResult GetAllUsersAndUsersSU()
+        {
+            try
+            {
+                // Obtener todos los usuarios de Users
+                List<User> users = global::User.Get();
+                
+                // Obtener todos los usuarios de UsersSU
+                List<UserSU> usersSU = UserSU.GetAllUsersSU();
+
+                // Combinar la información en una sola respuesta
+                var combinedData = new
+                {
+                    Users = users,
+                    UsersSU = usersSU
+                };
+
+                return Ok(new { Status = 0, Message = "Users and UsersSU found", Data = combinedData });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Status = 1, Message = $"Internal server error: {ex.Message}" });
+            }
+        }
     }
 }
+
+

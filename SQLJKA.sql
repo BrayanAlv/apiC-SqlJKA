@@ -230,4 +230,35 @@ INSERT INTO Readings (SensorId, ReadingDate, ReadingTime, Temperature, Humidity,
 (1, '2023-07-15', '03:30:00', 23.2, 67, 67),
 (1, '2023-07-15', '04:30:00', 22.7, 68, 68),
 (1, '2023-07-15', '05:30:00', 23.1, 69, 69);
+
+GO
+
+-- Crear la tabla UsersSU
+CREATE TABLE UsersSU (
+    UserId INT PRIMARY KEY IDENTITY(1,1),
+    FirstName NVARCHAR(50) NOT NULL,
+    LastName NVARCHAR(50) NOT NULL,
+    MiddleName NVARCHAR(50),
+    Email NVARCHAR(100) UNIQUE NOT NULL,
+    Password NVARCHAR(100) NOT NULL
+);
+
+GO
+
+-- Insertar usuarios admin de prueba
+INSERT INTO UsersSU (FirstName, LastName, MiddleName, Email, Password)
+VALUES 
+('John', 'Doe', 'Alexander', 'john.doe@gmail.com', 'password123'),
+('Jane', 'Smith', 'Francine', 'jane.smith@gmail.com', 'password456'),
+('Michael', 'Brown', 'Benjamin', 'michael.brown@gmail.com', 'password789'),
+('Emily', 'Davis', 'Samantha', 'emily.davis@gmail.com', 'password101'),
+('David', 'Wilson', 'Christopher', 'david.wilson@gmail.com', 'password202'),
+('Sarah', 'Miller', 'Danielle', 'sarah.miller@gmail.com', 'password303'),
+('Robert', 'Moore', 'Edward', 'robert.moore@gmail.com', 'password404'),
+('Jessica', 'Taylor', 'Quinn', 'jessica.taylor@gmail.com', 'password505'),
+('Daniel', 'Anderson', 'Frederick', 'daniel.anderson@gmail.com', 'password606'),
+('Laura', 'Thomas', 'Whitney', 'laura.thomas@gmail.com', 'password707'),
+('James', 'Jackson', 'Gregory', 'james.jackson@gmail.com', 'password808'),
+('Emma', 'White', 'Quinlan', 'emma.white@gmail.com', 'password909');
+
 GO

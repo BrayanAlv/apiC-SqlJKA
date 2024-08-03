@@ -19,7 +19,8 @@ public static class Mapper
             Password = r["Password"] != DBNull.Value ? r["Password"].ToString() : null,
             Email = r["Email"] != DBNull.Value ? r["Email"].ToString() : string.Empty,
             Approval = r["Approval"] != DBNull.Value ? Convert.ToBoolean(r["Approval"]) : false,
-            Status = r["Status"] != DBNull.Value ? Convert.ToBoolean(r["Status"]) : false
+            Status = r["Status"] != DBNull.Value ? Convert.ToBoolean(r["Status"]) : false,
+            type = "user"
         };
     }
 
@@ -232,10 +233,27 @@ public static class Mapper
             EndDate = row.Field<DateTime>("EndDate")
         };
     }
+    
+    public static UserSU ToUserSU(DataRow row)
+    {
+        return new UserSU
+        {
+            UserId = row.Field<int>("UserId"),
+            FirstName = row.Field<string>("FirstName"),
+            LastName = row.Field<string>("LastName"),
+            MiddleName = row.Field<string>("MiddleName"),
+            Email = row.Field<string>("Email"),
+            Password = row.Field<string>("Password"),
+            type = "admin"
+
+        };
+    }
 
     // Converts a DataTable to a List of SubscriptionDetail
     public static List<SubscriptionDetail> ToSubscriptionDetailList(DataTable table)
     {
         return table.AsEnumerable().Select(ToSubscriptionDetail).ToList();
     }
+    
+    
 }

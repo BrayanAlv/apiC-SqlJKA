@@ -82,10 +82,12 @@ public class User
     public bool Approval { get; set; }
     public bool Status { get; set; }
     public List<Sensor> Sensors { get; set; }
+    
+    public string type { get; set; }
 
     public User() { }
 
-    public User(int userId, string firstName, string lastName, string middleName, string company, string email, string password, bool approval, bool status)
+    public User(int userId, string firstName, string lastName, string middleName, string company, string email, string password, bool approval, bool status, string type)
     {
         UserId = userId;
         FirstName = firstName;
@@ -96,6 +98,7 @@ public class User
         Password = password;
         Approval = approval;
         Status = status;
+        type = "user";
     }
 
     public static List<User> Get()
