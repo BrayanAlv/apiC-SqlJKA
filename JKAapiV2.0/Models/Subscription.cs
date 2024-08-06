@@ -19,11 +19,12 @@ public class Subscription
 	                                        Users u ON s.UserId = u.UserId
                                         ORDER BY StartDate";
 
-    private static string selectOne = @"SELECT SubscriptionId, UserId, Folio, StartDate, EndDate
-                                        FROM Subscriptions WHERE SubscriptionId = @SubscriptionId";
+    private static string selectOne = @"SELECT UserId, Folio, StartDate, EndDate
+                                        FROM Subscriptions WHERE Folio = @Folio";
 
-    private static string insertOne = @"INSERT INTO Subscriptions (UserId, EndDate)
-                                        VALUES (@UserId, @EndDate)";
+    private static string insertOne = @"INSERT INTO Subscriptions (UserId, StartDate, EndDate)
+                                    VALUES (@UserId, @StartDate, @EndDate)";
+
 
     private static string selectSubscriptionsByEmail = @"SELECT 
                                                             u.Email as Email,
@@ -38,11 +39,11 @@ public class Subscription
 
     public int SubscriptionId { get; set; }
     public int UserId { get; set; }
-    public string Folio { get; set; }
+    public int Folio { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
 
-    public Subscription(int subscriptionId, int userId, string folio, DateTime startDate, DateTime endDate)
+    public Subscription(int subscriptionId, int userId, int folio, DateTime startDate, DateTime endDate)
     {
         //SubscriptionId = subscriptionId;
         UserId = userId;
@@ -75,11 +76,11 @@ public class Subscription
             throw new RecordNotFoundException("Subscription", subscriptionId.ToString());
     }
 
+
     public static bool Add(Subscription subscription)
     {
         SqlCommand command = new SqlCommand(insertOne);
         command.Parameters.AddWithValue("@UserId", subscription.UserId);
-        command.Parameters.AddWithValue("@Folio", subscription.Folio);
         command.Parameters.AddWithValue("@StartDate", subscription.StartDate);
         command.Parameters.AddWithValue("@EndDate", subscription.EndDate);
 
@@ -99,7 +100,7 @@ public class Subscription
             subscriptions.Add(new SubscriptionDetail
             {
                 Email = row.Field<string>("Email"),
-                Folio = row.Field<string>("Folio"),
+                Folio = row.Field<int>("Folio"),
                 EndDate = row.Field<DateTime>("EndDate")
             });
         }

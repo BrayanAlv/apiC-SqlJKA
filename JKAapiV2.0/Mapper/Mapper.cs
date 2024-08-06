@@ -36,7 +36,7 @@ public static class Mapper
         return new Subscription
         {
             UserId = r["UserId"] != DBNull.Value ? Convert.ToInt32(r["UserId"]) : 0,
-            Folio = r["Folio"] != DBNull.Value ? r["Folio"].ToString() : string.Empty,
+            Folio = r["Folio"] != DBNull.Value ? Convert.ToInt32(r["Folio"]) : 0,
             StartDate = r["StartDate"] != DBNull.Value ? Convert.ToDateTime(r["StartDate"]) : DateTime.MinValue,
             EndDate = r["EndDate"] != DBNull.Value ? Convert.ToDateTime(r["EndDate"]) : DateTime.MinValue
         };
@@ -93,7 +93,6 @@ public static class Mapper
         {
             PaymentFolio = r["PaymentFolio"] != DBNull.Value ? Convert.ToInt32(r["PaymentFolio"]) : 0,
             SubscriptionFolio = r["SubscriptionFolio"] != DBNull.Value ? Convert.ToInt32(r["SubscriptionFolio"]) : 0,
-            //PaymentFolio = r["PaymentFolio"] != DBNull.Value ? r["PaymentFolio"].ToString() : string.Empty,
             TransactionDate = r["TransactionDate"] != DBNull.Value ? Convert.ToDateTime(r["TransactionDate"]) : DateTime.MinValue,
             Total = r["Total"] != DBNull.Value ? Convert.ToSingle(r["Total"]) : 0f
         };
@@ -228,10 +227,16 @@ public static class Mapper
             LastName = row.Field<string>("LastName"),
             MiddleName = row.Field<string>("MiddleName"),
             Email = row.Field<string>("Email"),
-            Folio = row.Field<string>("Folio"),
+            Folio = row.Field<int>("Folio"),
             StartDate = row.Field<DateTime>("StartDate"),
             EndDate = row.Field<DateTime>("EndDate")
         };
+    }
+
+    // Converts a DataTable to a List of SubscriptionDetail
+    public static List<SubscriptionDetail> ToSubscriptionDetailList(DataTable table)
+    {
+        return table.AsEnumerable().Select(ToSubscriptionDetail).ToList();
     }
     
     public static UserSU ToUserSU(DataRow row)
@@ -248,12 +253,5 @@ public static class Mapper
 
         };
     }
-
-    // Converts a DataTable to a List of SubscriptionDetail
-    public static List<SubscriptionDetail> ToSubscriptionDetailList(DataTable table)
-    {
-        return table.AsEnumerable().Select(ToSubscriptionDetail).ToList();
-    }
-    
-    
 }
+

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JKAapiV2.0")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d054c14740e20d7b3bcb09c5e67697f79639daef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a20ebeac3e8cf8305a5442ec770e05995ae70c1a")]
 [assembly: System.Reflection.AssemblyProductAttribute("JKAapiV2.0")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JKAapiV2.0")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

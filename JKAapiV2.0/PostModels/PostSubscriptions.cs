@@ -5,4 +5,5 @@ public class PostSubscription
     //ublic string Folio { get; set; }
     //public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
+    public DateTime StartDate { get; set; }
 }

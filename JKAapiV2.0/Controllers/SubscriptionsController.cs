@@ -46,6 +46,7 @@ namespace JKAapiV2._0.Controllers
             }
         }
 
+        // POST: api/subscription/newSubscription
         [HttpPost("newSubscription")]
         public ActionResult CreateSubscription([FromBody] PostSubscription newSubscription)
         {
@@ -57,17 +58,15 @@ namespace JKAapiV2._0.Controllers
             {
                 Subscription subscription = new Subscription
                 {
-                    //SubscriptionId = newSubscription.SubscriptionId,
                     UserId = newSubscription.UserId,
-                    //Folio = newSubscription.Folio,
-                    //StartDate = newSubscription.StartDate,
+                    StartDate = newSubscription.StartDate,
                     EndDate = newSubscription.EndDate
                 };
 
                 bool success = Subscription.Add(subscription);
                 if (success)
                 {
-                    return CreatedAtAction(nameof(GetSubscriptionById), new { id = subscription.SubscriptionId }, new { Status = 0, Message = "Subscription created successfully", Data = subscription });
+                    return CreatedAtAction(nameof(GetSubscriptionById), new { id = subscription.Folio }, new { Status = 0, Message = "Subscription created successfully", Data = subscription });
                 }
                 return BadRequest(new { Status = 1, Message = "Subscription could not be added." });
             }
