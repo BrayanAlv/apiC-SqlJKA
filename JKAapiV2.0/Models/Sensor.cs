@@ -12,8 +12,9 @@ public class Sensor
     private static string selectOne = @"SELECT SensorId, SerialNumber, UserId
                                         FROM Sensors WHERE SensorId = @SensorId";
 
-    private static string insertOne = @"INSERT INTO Sensors (SerialNumber)
-                                        VALUES (@SerialNumber)";
+    private static string insertOne = @"INSERT INTO Sensors (SerialNumber, UserId)
+                                    VALUES (@SerialNumber, @UserId)";
+
 
     private static string detailInfoBySerialNumber = @"SELECT 
                                                             s.SensorId,
@@ -99,14 +100,7 @@ public class Sensor
         else
             throw new RecordNotFoundException("Sensor", sensorId.ToString());
     }
-
-    public static bool Add(Sensor sensor)
-    {
-        SqlCommand command = new SqlCommand(insertOne);
-        command.Parameters.AddWithValue("@SerialNumber", sensor.SerialNumber);
-
-        return SqlServerConnection.ExecuteInsert(command);
-    }
+    
 
     public static List<SensorDetail> GetDetailInfoBySerialNumber(string serialNumber)
     {
@@ -136,4 +130,14 @@ public class Sensor
 
         return Mapper.ToReadingList(table);
     }
+    
+    public static bool Add(PostSensor sensor)
+    {
+        SqlCommand command = new SqlCommand(insertOne);
+        command.Parameters.AddWithValue("@SerialNumber", sensor.SerialNumber);
+        command.Parameters.AddWithValue("@UserId", sensor.UserId);
+
+        return SqlServerConnection.ExecuteInsert(command);
+    }
+
 }

@@ -114,5 +114,27 @@ namespace JKAapiV2._0.Controllers
                 return StatusCode(500, new { Status = 1, Message = $"Internal server error: {ex.Message}" });
             }
         }
+
+        [HttpPost("add")]
+        public ActionResult AddSensor([FromBody] PostSensor postSensor)
+        {
+            if (postSensor == null || string.IsNullOrWhiteSpace(postSensor.SerialNumber) || postSensor.UserId <= 0)
+            {
+                return BadRequest(new { Status = 1, Message = "Invalid sensor data" });
+            }
+            try
+            {
+                bool isAdded = Sensor.Add(postSensor);
+                if (isAdded)
+                {
+                    return Ok(new { Status = 0, Message = "Sensor added successfully" });
+                }
+                return BadRequest(new { Status = 1, Message = "Failed to add sensor" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Status = 1, Message = $"Internal server error: {ex.Message}" });
+            }
+        }
     }
 }
